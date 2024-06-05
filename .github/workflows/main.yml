@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        java: [ '17' ]
+        java: [ '11' ]
     name: Java ${{ matrix.java }} Run Compilation
 
     steps:
@@ -17,7 +17,13 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: 614d2578d9495acf53cc02f2dee9c6131cc5e51a
-
+    - name: Install wget
+      run: sudo apt install wget
+    - name: get and install jdbc6-11.0.2.3 but installed as 6.0
+      run: |
+        mkdir jar
+        wget -O ./jar/ojdbc6.jar https://www.datanucleus.org/downloads/maven2/oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar
+        mvn install:install-file -Dfile=./jar/ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=6.0 -Dpackaging=jar
     - name: Set up JDK ${{ matrix.java }}
       uses: actions/setup-java@v3
       with:
