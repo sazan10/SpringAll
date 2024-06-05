@@ -31,7 +31,7 @@ jobs:
         java-version: ${{ matrix.java }}
     - name: Compile Java sources
       run: |
-        PROJECT_DIRS=$(find . -type f -name 'pom.xml' -exec dirname {} \;)
+        PROJECT_DIRS=$(find . -type f -name 'pom.xml'  -maxdepth 1 -exec dirname {} \;)
         for PROJECT_DIR in $PROJECT_DIRS; do
           echo "Compiling project in directory: $PROJECT_DIR"
           cd "$PROJECT_DIR"
