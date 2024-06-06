@@ -35,6 +35,6 @@ jobs:
         for PROJECT_DIR in $PROJECT_DIRS; do
           echo "Compiling project in directory: $PROJECT_DIR"
           cd "$PROJECT_DIR"
-          mvn clean install -DskipTests
+          mvn clean install -Dmaven.test.skip=true
           cd -
         done
