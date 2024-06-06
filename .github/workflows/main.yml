@@ -25,7 +25,7 @@ jobs:
         wget -O ./jar/ojdbc6.jar https://www.datanucleus.org/downloads/maven2/oracle/ojdbc6/11.2.0.3/ojdbc6-11.2.0.3.jar
         mvn install:install-file -Dfile=./jar/ojdbc6.jar -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=6.0 -Dpackaging=jar
     - name: Set up JDK ${{ matrix.java }}
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
         java-version: ${{ matrix.java }}
